@@ -20,10 +20,15 @@ public class Game {
     @Column(name = "game_year")
     private Integer year;
 
-    private String  genre;
-    private String platform;
+    private String genre;
+    private String platforms;
+    private Double score;
     private String imgUrl;
+
+    @Column(columnDefinition = "TEXT") 
     private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
 }
