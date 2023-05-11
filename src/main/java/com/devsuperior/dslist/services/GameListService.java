@@ -31,9 +31,8 @@ public class GameListService {
         //return gameRepository.findAll().stream().map(GameMinDTO::new).toList();
        List<GameList> result = gameListRepository.findAll();
        return result.stream().map(x -> new GameListDTO(x)).toList();
-
-
-
     }
+
+
 
 }
