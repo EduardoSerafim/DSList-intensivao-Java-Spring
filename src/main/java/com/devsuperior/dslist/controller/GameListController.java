@@ -7,6 +7,7 @@ import com.devsuperior.dslist.dto.ReplacementDTO;
 import com.devsuperior.dslist.services.GameListService;
 import com.devsuperior.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,18 +24,19 @@ public class GameListController {
 
 
     @GetMapping
-    public List<GameListDTO> findAll(){
-        return gameListService.findAll();
+    public ResponseEntity findAll(){
+        return ResponseEntity.ok(gameListService.findAll());
     }
 
     @GetMapping("/{listId}/games")
-    public List<GameMinDTO> findAll(@PathVariable Long listId){
-        return gameService.findByList(listId);
+    public ResponseEntity findAll(@PathVariable Long listId){
+        return ResponseEntity.ok(gameService.findByList(listId));
     }
 
     @PostMapping("/{listId}/replacement")
-    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body){
+    public ResponseEntity move(@PathVariable Long listId, @RequestBody ReplacementDTO body){
         gameListService.move(listId, body.sourceIndex(), body.destinationIndex());
+        return ResponseEntity.noContent().build();
     }
 
 //    @GetMapping(value = "/{id}")

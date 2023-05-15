@@ -5,6 +5,7 @@ import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,13 +22,13 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping
-    public List<GameMinDTO> findAll(){
-        return gameService.findAll();
+    public ResponseEntity findAll(){
+        return ResponseEntity.ok(gameService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public GameDTO findById(@PathVariable Long id){
-        return gameService.findById(id);
+    public ResponseEntity findById(@PathVariable Long id){
+        return ResponseEntity.ok(gameService.findById(id));
     }
 
 }
